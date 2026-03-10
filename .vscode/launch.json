@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Agenda",
+            "request": "launch",
+            "mainClass": "com.example.Agenda",
+            "projectName": "practica4",
+            "classPaths": [
+                "${workspaceFolder}/target/classes",
+                "${workspaceFolder}/target/test-classes"
+            ]
+        }
+    ]
+}
