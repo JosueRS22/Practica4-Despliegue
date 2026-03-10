@@ -1,0 +1,38 @@
+name: CI Agenda Automation
+
+# 1. Definir el evento: Se activa con cada push
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Definición de variables de entorno
+env:
+  USER_NAME: "JosueRS22" # Aquí puedes poner tu nombre real si prefieres
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Descargar el código del repositorio
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    # Paso 2: Configuración del entorno (Instalar JDK 21)
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+
+    # Paso 3: Personalización con variable de entorno (Log)
+    - name: Log de inicio
+      run: echo "Iniciando pruebas de la agenda de ${{ env.USER_NAME }}"
+
+    # Paso 4: Compilación y prueba
+    # Este comando ejecutará AppTest.java de forma profesional
+    - name: Build and Test con Maven
+      run: mvn -B test
